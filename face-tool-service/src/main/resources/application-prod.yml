@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: face-tool-service
+
+server:
+  port: 28089
+# SmartJavaAI 人脸识别配置
+smartjavaai:
+  face:
+    # 人脸检测模型路径
+    # 支持两种方式：
+    # 1. 绝对路径：/path/to/model 或 /path/to/model/file.pt
+    # 2. Resources路径：classpath:models/detection/mtcnn 或 classpath:models/recognition/model.pt
+    # 模型下载地址：https://pan.baidu.com/s/10l22x5fRz_gwLr8EAHa1Jg?pwd=1234
+    det-model-path: classpath:models/detection/mtcnn  # 使用 resources 目录
+    # 人脸检测模型类型：MTCNN, RETINA_FACE, YOLOV5_FACE_320, SEETA_FACE6_MODEL
+    det-model-enum: MTCNN
+    # 人脸识别模型路径
+    rec-model-path: classpath:models/recognition/InsightFace/model_ir_se50.pt  # 使用 resources 目录
+    # 人脸识别模型类型：INSIGHT_FACE_IRSE50_MODEL, INSIGHT_FACE_MOBILE_FACENET_MODEL
+    rec-model-enum: INSIGHT_FACE_IRSE50_MODEL
+    # 置信度阈值（0-1，默认0.5）
+    confidence-threshold: 0.5
+    # 设备类型：CPU, GPU
+    device: CPU
+    # 是否裁剪人脸（默认true）
+    crop-face: true
+    # 是否开启人脸对齐（默认true，提升准确度但降低性能）
+    align: true
+    # 向量数据库类型：SQLITE（默认，轻量级）或 MILVUS（大规模）
+    vector-db-type: SQLITE
+    # SQLite数据库路径（可选，不设置则使用默认路径：~/smartjavaai_cache/face.db）
+    # db-path: /path/to/custom/face.db
+    # Milvus 配置（当 vector-db-type=MILVUS 时使用）
+    milvus-host: 127.0.0.1
+    milvus-port: 19530
+    milvus-collection-name: face_collection
+    # milvus-username:
+    # milvus-password:
+
+

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  face-recognition-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: face-tool-service
+    ports:
+      - "28089:28089"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_OPTS=-Xmx4g -Xms2g
+    volumes:
+      # 挂载配置文件（可选，如果需要修改配置）
+      - ./src/main/resources/application-prod.yml:/app/application-prod.yml:ro
+      # 挂载模型目录（如果模型在宿主机）
+      - ./models:/app/models:ro
+      # 挂载数据目录（持久化数据库）
+      - ./data:/app/data
+    restart: unless-stopped

@@ -1,0 +1,35 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+*.swp
+*.swo
+*~
+
+# 日志文件
+logs/
+*.log
+*.sql
+
+# 配置文件（包含敏感信息，不提交到仓库）
+
+# 系统文件
+.DS_Store
+Thumbs.db
+src/main/resources/models/
+
+# 临时文件
+*.tmp
+*.bak
+*.cache
+
